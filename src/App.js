@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import documents from "./documents.json";
+import DropdownList from "./DropdownList";
+import RenderMarkdown from "./RenderMarkdown";
+import SelectedDocument from "./SelectedDocument";
 
-function App() {
+const App = () => {
+  const [selectedDoc, setSelectedDoc] = useState("None");
+
+  const handleSelection = (event) => {
+    setSelectedDoc(event.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <DropdownList elements={documents} onchange={handleSelection} />
+      <SelectedDocument document={selectedDoc} />
+      <RenderMarkdown render={selectedDoc}></RenderMarkdown>
+    </main>
   );
-}
+};
 
 export default App;
