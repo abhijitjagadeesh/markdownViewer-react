@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 const RenderMarkdown = ({ render }) => {
   const [data, setData] = useState("");
 
-  fetch("documents/" + render + ".md")
+  fetch("markdownviewer-react/documents/" + render + ".md")
     .then((response) => response.text())
     .then((text) => {
       if (render !== "None" && render !== "Select a document") {
